@@ -1,0 +1,35 @@
+# Mapy.com Developer Documentation - LLM Reference
+
+## Root Navigation
+ROOT: /README.md
+DOCS_INDEX: /docs/README.md
+
+## REST API Documentation
+REST_INDEX: /docs/rest-api/README.md
+REST_ACCESS: /docs/rest-api/getting-access.md
+REST_MAP_TILES: /docs/rest-api/map-tiles.md
+REST_STATIC_MAPS: /docs/rest-api/static-maps.md
+REST_GEOCODING: /docs/rest-api/geocoding.md
+REST_ROUTING: /docs/rest-api/route-planning.md
+REST_ELEVATION: /docs/rest-api/elevation.md
+REST_PANORAMA: /docs/rest-api/static-panorama.md
+REST_TIMEZONE: /docs/rest-api/time-zones.md
+
+## URL Mapy.com Documentation
+URL_INDEX: /docs/url-mapy/README.md
+URL_SHOWMAP: /docs/url-mapy/showmap.md
+URL_SEARCH: /docs/url-mapy/search.md
+URL_ROUTE: /docs/url-mapy/route.md
+
+## External Official Resources
+PORTAL_REST: https://developer.mapy.com/rest-api-mapy-cz/
+PORTAL_URLS: https://developer.mapy.com/further-uses-of-mapycz/
+API_DOCS: https://api.mapy.com/v1/docs/
+
+## OpenAPI Specifications
+OPENAPI_MAPTILES: https://api.mapy.com/v1/docs/maptiles/openapi.yaml
+OPENAPI_STATIC: https://api.mapy.com/v1/docs/static/openapi.yaml
+OPENAPI_GEOCODE: https://api.mapy.com/v1/docs/geocode/openapi.yaml
+OPENAPI_ROUTING: https://api.mapy.com/v1/docs/routing/openapi.yaml
+OPENAPI_ELEVATION: https://api.mapy.com/v1/docs/elevation/openapi.yaml
+OPENAPI_TIMEZONE: https://api.mapy.com/v1/docs/timezone/openapi.yaml
