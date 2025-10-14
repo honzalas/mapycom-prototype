@@ -8,20 +8,42 @@ The Map Tiles API provides access to raster map tiles in various formats and map
 - Swagger UI: https://api.mapy.com/v1/docs/maptiles/
 - OpenAPI (YAML): https://api.mapy.com/v1/docs/maptiles/openapi.yaml
 
-## Typical Endpoints
+## Endpoints
 
 - `GET /v1/maptiles/{mapset}/{tileSize}/{z}/{x}/{y}` - Get map tile image
 - `GET /v1/maptiles/{mapset}/tiles.json` - Get mapset description as TileJSON
 
-## Key Parameters (Selection)
+## Get Map Tile Image
 
-- `mapset` (string) — Map layer name: `basic`, `outdoor`, `winter`, `aerial`, `names-overlay`
-- `tileSize` (string) — Tile image size: `256` (standard) or `256@2x` (retina/high-DPI, only for basic and outdoor)
-- `z` (integer) — Zoom level (0-20), where higher values show more detail
-- `x` (integer) — Tile X coordinate in xyz TileJSON scheme
-- `y` (integer) — Tile Y coordinate in xyz TileJSON scheme
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
-- `lang` (string) — Preferred language for labels (cs, de, el, en, es, fr, it, nl, pl, pt, ru, sk, tr, uk), affects tiles with z ≤ 6
+Get individual raster map tiles for use in mapping applications.
+
+### Path Parameters
+
+- `mapset` (string, required) — Map layer name: `basic`, `outdoor`, `winter`, `aerial`, `names-overlay`
+- `tileSize` (string, required) — Tile image size: `256` (standard) or `256@2x` (retina/high-DPI, only for basic and outdoor)
+- `z` (integer, required) — Zoom level (0-20), where higher values show more detail
+- `x` (integer, required) — Tile X coordinate in xyz TileJSON scheme
+- `y` (integer, required) — Tile Y coordinate in xyz TileJSON scheme
+
+### Query Parameters
+
+- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `lang` (string) — Preferred language for labels: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`). Affects only tiles with z ≤ 6
+
+> Complete parameter list available in Swagger / YAML above.
+
+## Get TileJSON Metadata
+
+Get mapset description as TileJSON format. TileJSON is a standard format that describes map tilesets, and many mapping libraries (such as MapLibre GL JS) can automatically initialize and configure themselves using this file.
+
+### Path Parameters
+
+- `mapset` (string, required) — Map layer name: `basic`, `outdoor`, `winter`, `aerial`, `names-overlay`
+
+### Query Parameters
+
+- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `lang` (string) — Preferred language for labels: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`). Affects only tiles with z ≤ 6
 
 > Complete parameter list available in Swagger / YAML above.
 

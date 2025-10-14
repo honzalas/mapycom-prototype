@@ -6,7 +6,7 @@ The Geocoding API provides forward geocoding (address to coordinates), reverse g
 
 - Textual documentation: https://developer.mapy.com/en/rest-api-mapy-cz/function/geocoding/
 - Swagger UI: https://api.mapy.com/v1/docs/geocode/
-- OpenAPI (YAML): https://api.mapy.com/v1/docs/geocode/openapi.yaml
+- OpenAPI (YAML): https://api.mapy.com/v1/docs/geocode/openapi.yamljson
 
 ## Typical Endpoints
 
@@ -40,6 +40,21 @@ Convert complete addresses or place names to geographic coordinates.
 - `preferNearPrecision` (number) — Precision of preferNear parameter in meters
 
 > Complete parameter list available in Swagger / YAML above.
+
+#### Response Structure
+
+The geocode endpoint returns a JSON object with the following structure:
+
+- `items` (array) — List of matching geographical entities, each containing:
+  - `name` (string) — Name of the entity (e.g., "Týnská ulička 610/7")
+  - `label` (string) — Type label (e.g., "Adresa", "Město")
+  - `position` (object) — Coordinates with `lon` and `lat` properties
+  - `bbox` (array) — Bounding box as `[minLon, minLat, maxLon, maxLat]`
+  - `type` (string) — Entity type (e.g., "regional.address", "regional.municipality", "poi")
+  - `location` (string) — Short locality label (e.g., "Praha 1 - Staré Město, Česko")
+  - `regionalStructure` (array) — Ordered list of parent administrative entities (smallest first), each with `name`, `type`, and optionally `isoCode` for countries
+  - `zip` (string, optional) — Postal code (available only for some addresses)
+- `locality` (array, optional) — Resolved bounding boxes for localities used in the `locality` parameter
 
 #### Examples
 
@@ -81,6 +96,13 @@ Get search suggestions as users type, useful for implementing autocomplete searc
 - `preferBBox` (array) — Prefer results from this bounding box (not a filter). Format: `[minLon,minLat,maxLon,maxLat]`
 - `preferNear` (array) — Prefer results near this position (not a filter). Format: `[lon,lat]`
 - `preferNearPrecision` (number) — Precision of preferNear parameter in meters
+
+#### Response Structure
+
+The suggest endpoint returns the same JSON structure as geocode:
+
+- `items` (array) — List of suggested geographical entities with the same properties as geocode (name, label, position, bbox, type, location, regionalStructure, zip)
+- `locality` (array, optional) — Resolved bounding boxes for localities used in the `locality` parameter
 
 #### Examples
 
@@ -230,6 +252,20 @@ Convert geographic coordinates to addresses. Useful for "click on map" features 
 - `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)
 
 > Note: Reverse geocoding returns only regional entity types (country, region, municipality, municipality_part, street, address), not POIs.
+
+### Response Structure
+
+The reverse geocode endpoint returns a JSON object with:
+
+- `items` (array) — List of regional entities at the given location, each containing:
+  - `name` (string) — Name of the entity (e.g., "Týnská ulička 610/7")
+  - `label` (string) — Type label (e.g., "Adresa", "Ulice")
+  - `position` (object) — Coordinates with `lon` and `lat` properties
+  - `bbox` (array) — Bounding box as `[minLon, minLat, maxLon, maxLat]`
+  - `type` (string) — Regional entity type (e.g., "regional.address", "regional.street", "regional.municipality")
+  - `location` (string) — Short locality label (e.g., "Praha 1 - Staré Město, Česko")
+  - `regionalStructure` (array) — Ordered list of parent administrative entities (smallest first), each with `name`, `type`, and optionally `isoCode` for countries
+  - `zip` (string, optional) — Postal code (available only for some addresses)
 
 ### Examples
 
