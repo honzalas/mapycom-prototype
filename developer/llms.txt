@@ -1,25 +1,26 @@
 # Mapy.com Developer Documentation - LLM Reference
+# Repository: https://github.com/honzalas/mapycom-prototype
 
 ## Root Navigation
-ROOT: /README.md
-DOCS_INDEX: /docs/README.md
+ROOT: https://github.com/honzalas/mapycom-prototype/blob/main/developer/README.md
+DOCS_INDEX: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/README.md
 
 ## REST API Documentation
-REST_INDEX: /docs/rest-api/README.md
-REST_ACCESS: /docs/rest-api/getting-access.md
-REST_MAP_TILES: /docs/rest-api/map-tiles.md
-REST_STATIC_MAPS: /docs/rest-api/static-maps.md
-REST_GEOCODING: /docs/rest-api/geocoding.md
-REST_ROUTING: /docs/rest-api/route-planning.md
-REST_ELEVATION: /docs/rest-api/elevation.md
-REST_PANORAMA: /docs/rest-api/static-panorama.md
-REST_TIMEZONE: /docs/rest-api/time-zones.md
+REST_INDEX: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/README.md
+REST_ACCESS: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/getting-access.md
+REST_MAP_TILES: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/map-tiles.md
+REST_STATIC_MAPS: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/static-maps.md
+REST_GEOCODING: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/geocoding.md
+REST_ROUTING: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/route-planning.md
+REST_ELEVATION: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/elevation.md
+REST_PANORAMA: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/static-panorama.md
+REST_TIMEZONE: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/rest-api/time-zones.md
 
 ## URL Mapy.com Documentation
-URL_INDEX: /docs/url-mapy/README.md
-URL_SHOWMAP: /docs/url-mapy/showmap.md
-URL_SEARCH: /docs/url-mapy/search.md
-URL_ROUTE: /docs/url-mapy/route.md
+URL_INDEX: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/url-mapy/README.md
+URL_SHOWMAP: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/url-mapy/showmap.md
+URL_SEARCH: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/url-mapy/search.md
+URL_ROUTE: https://github.com/honzalas/mapycom-prototype/blob/main/developer/docs/url-mapy/route.md
 
 ## External Official Resources
 PORTAL_REST: https://developer.mapy.com/rest-api-mapy-cz/
