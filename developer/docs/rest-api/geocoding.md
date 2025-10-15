@@ -6,7 +6,7 @@ The Geocoding API provides forward geocoding (address to coordinates), reverse g
 
 - Textual documentation: https://developer.mapy.com/en/rest-api-mapy-cz/function/geocoding/
 - Swagger UI: https://api.mapy.com/v1/docs/geocode/
-- OpenAPI (YAML): https://api.mapy.com/v1/docs/geocode/openapi.yamljson
+- OpenAPI (YAML): https://api.mapy.com/v1/docs/geocode/openapi.json
 
 ## Typical Endpoints
 
@@ -97,7 +97,7 @@ Get search suggestions as users type, useful for implementing autocomplete searc
 - `preferNear` (array) — Prefer results near this position (not a filter). Format: `[lon,lat]`
 - `preferNearPrecision` (number) — Precision of preferNear parameter in meters
 
-#### Response Structure
+  #### Response Structure
 
 The suggest endpoint returns the same JSON structure as geocode:
 
