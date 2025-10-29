@@ -11,9 +11,6 @@ The Map Tiles API provides access to raster map tiles in various formats and map
 ## Endpoints
 
 - `GET /v1/maptiles/{mapset}/{tileSize}/{z}/{x}/{y}` - Get map tile image
-- `GET /v1/maptiles/{mapset}/tiles.json` - Get mapset description as TileJSON
-
-## Get Map Tile Image
 
 Get individual raster map tiles for use in mapping applications.
 
@@ -32,21 +29,6 @@ Get individual raster map tiles for use in mapping applications.
 
 > Complete parameter list available in Swagger / YAML above.
 
-## Get TileJSON Metadata
-
-Get mapset description as TileJSON format. TileJSON is a standard format that describes map tilesets, and many mapping libraries (such as MapLibre GL JS) can automatically initialize and configure themselves using this file.
-
-### Path Parameters
-
-- `mapset` (string, required) — Map layer name: `basic`, `outdoor`, `winter`, `aerial`, `names-overlay`
-
-### Query Parameters
-
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
-- `lang` (string) — Preferred language for labels: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`). Affects only tiles with z ≤ 6
-
-> Complete parameter list available in Swagger / YAML above.
-
 ## Examples
 
 ### cURL
@@ -55,126 +37,170 @@ Get mapset description as TileJSON format. TileJSON is a standard format that de
 # Get a basic map tile for Prague area (standard resolution)
 curl "https://api.mapy.com/v1/maptiles/basic/256/14/8956/5513?apikey=YOUR_API_KEY" \
   --output tile.png
-
-# Get a high-DPI/retina tile
-curl "https://api.mapy.com/v1/maptiles/basic/256@2x/14/8956/5513?apikey=YOUR_API_KEY" \
-  --output tile-retina.png
-
-# Get TileJSON metadata for outdoor mapset
-curl "https://api.mapy.com/v1/maptiles/outdoor/tiles.json?apikey=YOUR_API_KEY"
 ```
-
-## Integration with Map Libraries
-
-Map tiles are typically consumed using JavaScript mapping libraries. These libraries handle tile loading, caching, user interactions, and provide additional features like markers, popups, and custom controls. The most popular open-source libraries compatible with Mapy.com tiles are Leaflet and MapLibre GL JS. When integrating with these libraries, please remember to include proper attribution and the Mapy.com logo as shown in the examples below.
 
 ### Leaflet Example
 
-```js
-// replace with your own API key
-const API_KEY = 'YOUR_API_KEY';
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple map in Leaflet</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+      }
 
-/*
-We create the map and set its initial coordinates and zoom.
-See https://leafletjs.com/reference.html#map
-*/
-const map = L.map('map').setView([49.8729317, 14.8981184], 16);
+      #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+      }
+  </style>
+  <body>      
+      <div id="map"></div>
+      <script>
+          // replace with your own API key
+          const API_KEY = 'YOUR_API_KEY';
 
-/*
-Then we add a raster tile layer with REST API Mapy.cz tiles
-See https://leafletjs.com/reference.html#tilelayer
-*/
-L.tileLayer(`https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
-  minZoom: 0,
-  maxZoom: 20,
-  attribution: '<a href="https://api.mapy.com/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
-}).addTo(map);
+          /*
+          We create the map and set its initial coordinates and zoom.
+          */
+          const map = L.map('map').setView([49.8729317, 14.8981184], 16);
 
-/*
-We also require you to include our logo somewhere over the map.
-We create our own map control implementing a documented interface,
-that shows a clickable logo.
-See https://leafletjs.com/reference.html#control
-*/
-const LogoControl = L.Control.extend({
-  options: {
-    position: 'bottomleft',
-  },
+          /*
+          Then we add a raster tile layer with REST API Mapy.cz tiles
+          */
+          L.tileLayer(`https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
+              minZoom: 0,
+              maxZoom: 20,
+              attribution: '<a href="https://api.mapy.com/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+          }).addTo(map);
 
-  onAdd: function (map) {
-    const container = L.DomUtil.create('div');
-    const link = L.DomUtil.create('a', '', container);
+          /*
+          We also require you to include our logo somewhere over the map.
+          We create our own map control implementing a documented interface,
+          that shows a clickable logo.
+          */
+          const LogoControl = L.Control.extend({
+              options: {
+                  position: 'bottomleft',
+              },
 
-    link.setAttribute('href', 'http://mapy.com/');
-    link.setAttribute('target', '_blank');
-    link.innerHTML = '<img src="https://api.mapy.com/img/api/logo.svg" width="100px" />';
-    L.DomEvent.disableClickPropagation(link);
+              onAdd: function (map) {
+                  const container = L.DomUtil.create('div');
+                  const link = L.DomUtil.create('a', '', container);
 
-    return container;
-  },
-});
+                  link.setAttribute('href', 'http://mapy.com/');
+                  link.setAttribute('target', '_blank');
+                  link.innerHTML = '<img src="https://api.mapy.com/img/api/logo.svg" />';
+                  L.DomEvent.disableClickPropagation(link);
 
-// finally we add our LogoControl to the map
-new LogoControl().addTo(map);
+                  return container;
+              },
+          });
+
+          // finally we add our LogoControl to the map
+          new LogoControl().addTo(map);
+      </script>
+  </body>
+</html>
 ```
 
 ### MapLibre GL JS Example
 
-```js
-// replace with your own API key
-const API_KEY = 'YOUR_API_KEY';
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple map in MapLibre GL JS</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  </head>
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+      }
 
-/*
-We create a map with initial coordinates zoom, a raster tile source and a layer using that source.
-See https://maplibre.org/maplibre-gl-js-docs/example/map-tiles/
-See https://maplibre.org/maplibre-gl-js-docs/style-spec/sources/#raster
-See https://maplibre.org/maplibre-gl-js-docs/style-spec/layers/
-*/
-const map = new maplibregl.Map({
-  container: 'map',
-  center: [14.8981184, 49.8729317],
-  zoom: 15,
-  style: {
-    version: 8,
-    sources: {
-      'basic-tiles': {
-        type: 'raster',
-        url: `https://api.mapy.com/v1/maptiles/basic/tiles.json?apikey=${API_KEY}`,
-        tileSize: 256,
-      },
-    },
-    layers: [{
-      id: 'tiles',
-      type: 'raster',
-      source: 'basic-tiles',
-    }],
-  },
-});
+      #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+      }
+  </style>
+  <body>      
+      <div id="map"></div>
+      <script>
+          // replace with your own API key
+          const API_KEY = 'YOUR_API_KEY';
 
-/*
-We also require you to include our logo somewhere over the map.
-We create our own map control implementing a documented interface,
-that shows a clickable logo.
-See https://maplibre.org/maplibre-gl-js-docs/api/markers/#icontrol
-*/
-class LogoControl {
-  onAdd(map) {
-    this._map = map;
-    this._container = document.createElement('div');
-    this._container.className = 'maplibregl-ctrl';
-    this._container.innerHTML = '<a href="http://mapy.com/" target="_blank"><img  width="100px" src="https://api.mapy.com/img/api/logo.svg" ></a>';
+          /*
+          We create a map with initial coordinates, zoom, a raster tile source and a layer using that source.
+          */
+          const map = new maplibregl.Map({
+              container: 'map',
+              center: [14.8981184, 49.8729317],
+              zoom: 15,
+              style: {
+                  version: 8,
+                  sources: {
+                      'basic-tiles': {
+                          type: 'raster',
+                          tiles: [
+                              `https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`
+                          ],
+                          tileSize: 256,
+                          minzoom: 0,
+                          maxzoom: 20,
+                      },
+                  },
+                  layers: [{
+                      id: 'tiles',
+                      type: 'raster',
+                      source: 'basic-tiles',
+                  }],
+              },
+          });
 
-    return this._container;
-  }
- 
-  onRemove() {
-    this._container.parentNode.removeChild(this._container);
-    this._map = undefined;
-  }
-}
+          /*
+          We also require you to include our logo somewhere over the map.
+          We create our own map control implementing a documented interface,
+          that shows a clickable logo.
+          */
+          class LogoControl {
+              onAdd(map) {
+                  this._map = map;
+                  this._container = document.createElement('div');
+                  this._container.className = 'maplibregl-ctrl';
+                  this._container.innerHTML = '<a href="http://mapy.com/" target="_blank"><img src="https://api.mapy.com/img/api/logo.svg" /></a>';
 
-// finally we add our LogoControl to the map
-map.addControl(new LogoControl(), 'bottom-left');
+                  return this._container;
+              }
+           
+              onRemove() {
+                  this._container.parentNode.removeChild(this._container);
+                  this._map = undefined;
+              }
+          }
+
+          // finally we add our LogoControl to the map
+          map.on('load', () => {
+              map.addControl(new LogoControl(), 'bottom-left');
+          });
+      </script>
+  </body>
+</html>
 ```
 
 ## Common Errors and Limits
@@ -185,7 +211,6 @@ map.addControl(new LogoControl(), 'bottom-left');
 
 **Rate Limits:**
 - Tile images: Maximum 500 requests per second per API key
-- TileJSON: Maximum 100 requests per second per API key
 
 For detailed error responses and rate limits, see the [OpenAPI specification](https://api.mapy.com/v1/docs/maptiles/openapi.yaml) and [Getting Access](getting-access.md).
 

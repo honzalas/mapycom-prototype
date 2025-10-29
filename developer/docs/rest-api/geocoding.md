@@ -6,7 +6,7 @@ The Geocoding API provides forward geocoding (address to coordinates), reverse g
 
 - Textual documentation: https://developer.mapy.com/en/rest-api-mapy-cz/function/geocoding/
 - Swagger UI: https://api.mapy.com/v1/docs/geocode/
-- OpenAPI (YAML): https://api.mapy.com/v1/docs/geocode/openapi.json
+- OpenAPI: https://api.mapy.com/v1/docs/geocode/openapi.json
 
 ## Typical Endpoints
 

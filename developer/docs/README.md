@@ -26,6 +26,16 @@ Documentation for URL schemes that allow direct invocation of Mapy.com functions
 
 These URLs are freely available and do not require an API key.
 
+### [JS Panorama Documentation](js-panorama/README.md)
+
+Documentation for the JavaScript Panorama component that provides interactive 360° panoramic views:
+- Interactive panorama viewer
+- Navigation between panoramas
+- Event handling and camera control
+- Integration examples
+
+The JS Panorama component requires an API key and provides a full-featured panorama experience similar to Mapy.com.
+
 ## Technical Details
 
 All technical specifications, parameter details, and schemas are available through:

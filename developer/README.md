@@ -6,12 +6,14 @@ This repository serves as a simplified mirror and reference hub for developers a
 
 - **[REST API Documentation](docs/rest-api/README.md)** - Comprehensive guide to Mapy.com REST API functions including map tiles, geocoding, routing, elevation, and more.
 - **[URL Mapy.com Documentation](docs/url-mapy/README.md)** - Documentation for Mapy.com URL schemes that allow direct invocation of map display, search, and routing functions.
+- **[JS Panorama Documentation](docs/js-panorama/README.md)** - Documentation for the JavaScript Panorama component that provides interactive 360° panoramic views.
 
 ## About This Repository
 
 This repository provides:
 - Quick reference guides for Mapy.com REST API functions
 - Documentation for URL schemes supported by Mapy.com
+- Documentation for JS Panorama component
 - Links to official OpenAPI specifications and interactive Swagger UI
 - Code examples in multiple programming languages
 
