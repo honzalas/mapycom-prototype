@@ -9,8 +9,10 @@ This documentation provides quick reference guides and examples for working with
 Complete guide to Mapy.com REST API functions, including:
 - Map Tiles
 - Static Maps
-- Geocoding (Forward, Reverse, Autocomplete)
-- Route Planning
+- Forward Geocoding (Address → Coordinates, Autocomplete)
+- Reverse Geocoding (Coordinates → Address)
+- Routing
+- Matrix Routing
 - Elevation Data
 - Static Panorama
 - Time Zones

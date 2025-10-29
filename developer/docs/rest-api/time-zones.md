@@ -1,120 +1,120 @@
 # Time Zones
 
-The Time Zones API provides time zone information, local time, and UTC offsets for specific geographic coordinates. Use this to display local times for locations worldwide or convert between time zones.
+The Time Zones API provides time zone information, local time, and UTC offsets for specific geographic coordinates or IANA time zone codes. Use this to display local times for locations worldwide, convert between time zones, or get detailed time zone information.
 
 ## Quick Links
 
 - Textual documentation: https://developer.mapy.com/en/rest-api-mapy-cz/function/api-for-time-zones/
 - Swagger UI: https://api.mapy.com/v1/docs/timezone/
-- OpenAPI (YAML): https://api.mapy.com/v1/docs/timezone/openapi.yaml
+- OpenAPI: https://api.mapy.com/v1/docs/timezone/openapi.json
 
-## Typical Endpoints
+## Endpoints
 
-- `GET /v1/timezone` - Get time zone information for specific coordinates
+- `GET /v1/timezone/list-timezones` - Get all IANA timezone names
+- `GET /v1/timezone/timezone` - Get timezone information by IANA code
+- `GET /v1/timezone/coordinate` - Get timezone information by coordinates
 
 ## Key Parameters (Selection)
 
-- `apikey` (string) — Your API key for authentication
-- `lon` (number) — Longitude coordinate
-- `lat` (number) — Latitude coordinate
-- `timestamp` (integer) — Optional Unix timestamp (seconds since epoch) to query historical timezone data
+### List Timezones
 
-> Complete parameter list available in Swagger / YAML above.
+- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `lang` (string, optional) — Language code (default: cs). Supported values: cs, de, el, en, es, fr, it, nl, pl, pt, ru, sk, tr, uk
+
+### Get Timezone by IANA Code
+
+- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `timezone` (string, required) — IANA timezone name (e.g., "Europe/Prague")
+- `lang` (string, optional) — Language code (default: cs)
+
+### Get Timezone by Coordinates
+
+- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `lon` (number, required) — Longitude coordinate
+- `lat` (number, required) — Latitude coordinate
+- `lang` (string, optional) — Language code (default: cs)
+
+> Complete parameter list available in Swagger / OpenAPI above.
+
+## Response Format
+
+### Timezone Information
+
+Both `timezone` and `coordinate` endpoints return detailed timezone information:
+
+```json
+{
+  "timezone": {
+    "timezoneName": "Europe/Prague",
+    "currentTimeAbbreviation": "CEST",
+    "standardTimeAbbreviation": "CET",
+    "currentLocalTime": "2024-10-16T15:03:51.248",
+    "currentUtcTime": "2024-10-16T13:03:51.248Z",
+    "currentUtcOffsetSeconds": 7200,
+    "standardUtcOffsetSeconds": 3600,
+    "hasDst": true,
+    "isDstActive": true,
+    "dstInfo": {
+      "dstAbbreviation": "CEST",
+      "dstStartUtcTime": "2024-03-31T01:00:00.000Z",
+      "dstStartLocalTime": "2024-03-31T03:00:00.000",
+      "dstEndUtcTime": "2024-10-27T01:00:00.000Z",
+      "dstEndLocalTime": "2024-10-27T02:00:00.000",
+      "dstOffsetSeconds": 3600,
+      "dstDurationSeconds": 18144000
+    }
+  }
+}
+```
+
+### List Timezones
+
+```json
+{
+  "timezones": [
+    "Africa/Abidjan",
+    "Africa/Accra",
+    "Europe/Prague",
+    "America/New_York"
+  ]
+}
+```
 
 ## Examples
 
-### Current Time Zone
-
-#### cURL
+### cURL
 
 ```bash
-# Get time zone information for Prague
-curl "https://api.mapy.com/v1/timezone?apikey=YOUR_API_KEY&lon=14.4378&lat=50.0755"
-```
+# Get all IANA timezone names
+curl "https://api.mapy.com/v1/timezone/list-timezones?apikey=YOUR_API_KEY"
 
-#### JavaScript (fetch)
+# Get timezone information by IANA code
+curl "https://api.mapy.com/v1/timezone/timezone?apikey=YOUR_API_KEY&timezone=Europe/Prague"
 
-```js
-const apiKey = process.env.MAPY_API_KEY;
-const lon = 14.4378, lat = 50.0755;
-
-fetch(`https://api.mapy.com/v1/timezone?apikey=${apiKey}&lon=${lon}&lat=${lat}`)
-  .then(response => response.json())
-  .then(data => {
-    console.log('Time Zone:', data.timeZoneId);
-    console.log('UTC Offset:', data.rawOffset, 'seconds');
-    console.log('DST Offset:', data.dstOffset, 'seconds');
-    console.log('Time Zone Name:', data.timeZoneName);
-  })
-  .catch(error => console.error('Error:', error));
-```
-
-#### C# (HttpClient)
-
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-var apiKey = Environment.GetEnvironmentVariable("MAPY_API_KEY");
-var url = $"https://api.mapy.com/v1/timezone?apikey={apiKey}&lon=14.4378&lat=50.0755";
-
-using var client = new HttpClient();
-var json = await client.GetStringAsync(url);
-Console.WriteLine(json);
-```
-
-### Historical Time Zone Query
-
-Query time zone information for a specific date/time:
-
-#### cURL
-
-```bash
-# Get time zone for Prague on January 1, 2020
-curl "https://api.mapy.com/v1/timezone?apikey=YOUR_API_KEY&lon=14.4378&lat=50.0755&timestamp=1577836800"
-```
-
-#### JavaScript (fetch)
-
-```js
-const apiKey = process.env.MAPY_API_KEY;
-const lon = 14.4378, lat = 50.0755;
-const timestamp = Math.floor(new Date('2020-01-01').getTime() / 1000);
-
-fetch(`https://api.mapy.com/v1/timezone?apikey=${apiKey}&lon=${lon}&lat=${lat}&timestamp=${timestamp}`)
-  .then(response => response.json())
-  .then(data => {
-    console.log('Time Zone at that time:', data.timeZoneId);
-    console.log('Total offset:', data.rawOffset + data.dstOffset, 'seconds');
-  })
-  .catch(error => console.error('Error:', error));
-```
-
-#### C# (HttpClient)
-
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-var apiKey = Environment.GetEnvironmentVariable("MAPY_API_KEY");
-var timestamp = new DateTimeOffset(new DateTime(2020, 1, 1)).ToUnixTimeSeconds();
-var url = $"https://api.mapy.com/v1/timezone?apikey={apiKey}&lon=14.4378&lat=50.0755&timestamp={timestamp}";
-
-using var client = new HttpClient();
-var json = await client.GetStringAsync(url);
-Console.WriteLine(json);
+# Get timezone information by coordinates
+curl "https://api.mapy.com/v1/timezone/coordinate?apikey=YOUR_API_KEY&lon=14.4378&lat=50.0755"
 ```
 
 ## Response Fields
 
-The API typically returns:
-- `timeZoneId` - IANA time zone identifier (e.g., "Europe/Prague")
-- `timeZoneName` - Human-readable time zone name
-- `rawOffset` - Base UTC offset in seconds (without DST)
-- `dstOffset` - Daylight saving time offset in seconds (0 if not in DST)
-- Total offset = rawOffset + dstOffset
+| Field | Description |
+|-------|-------------|
+| `timezoneName` | IANA timezone name (e.g., "Europe/Prague") |
+| `currentTimeAbbreviation` | Current timezone abbreviation (e.g., "CEST") |
+| `standardTimeAbbreviation` | Standard time abbreviation (e.g., "CET") |
+| `currentLocalTime` | Current local time in ISO 8601 format |
+| `currentUtcTime` | Current UTC time in ISO 8601 format |
+| `currentUtcOffsetSeconds` | Current UTC offset in seconds |
+| `standardUtcOffsetSeconds` | Standard UTC offset in seconds |
+| `hasDst` | Whether timezone uses daylight saving time |
+| `isDstActive` | Whether daylight saving time is currently active |
+| `dstInfo.dstAbbreviation` | Daylight saving time abbreviation |
+| `dstInfo.dstStartUtcTime` | UTC time when DST starts |
+| `dstInfo.dstStartLocalTime` | Local time when DST starts |
+| `dstInfo.dstEndUtcTime` | UTC time when DST ends |
+| `dstInfo.dstEndLocalTime` | Local time when DST ends |
+| `dstInfo.dstOffsetSeconds` | DST offset from standard time in seconds |
+| `dstInfo.dstDurationSeconds` | DST duration in seconds |
 
 ## Use Cases
 
@@ -122,31 +122,29 @@ The API typically returns:
 - **Travel Applications**: Show local time at destinations
 - **Logistics**: Calculate delivery times across time zones
 - **Meeting Planners**: Find suitable times across multiple time zones
-- **Historical Data**: Analyze time-sensitive data with correct time zones
-
-## Converting Offsets to Local Time
-
-```js
-// Example: Convert UTC time to local time using API response
-const utcTime = new Date();
-const totalOffsetSeconds = data.rawOffset + data.dstOffset;
-const localTime = new Date(utcTime.getTime() + totalOffsetSeconds * 1000);
-console.log('Local time:', localTime.toISOString());
-```
+- **Global Activities**: Display local time and timezone information for activities worldwide
+- **Time Conversion**: Convert times between different time zones
+- **Current Time**: Get current time in any timezone
 
 ## Common Errors and Limits
 
 - **401 Unauthorized**: Invalid or missing API key
-- **400 Bad Request**: Invalid coordinates or timestamp
+- **400 Bad Request**: Invalid coordinates or timezone name
 - **403 Forbidden**: API key doesn't have access to this resource
+- **422 Validation Error**: Invalid parameter format
 - **429 Too Many Requests**: Rate limit exceeded
 
-For detailed error responses and rate limits, see the [OpenAPI specification](https://api.mapy.com/v1/docs/timezone/openapi.yaml).
+**Limitations:**
+- Maximum rate limit: 300 requests per second per API key
+- Timezone information is based on IANA timezone database
+
+For detailed error responses and rate limits, see the [OpenAPI specification](https://api.mapy.com/v1/docs/timezone/openapi.json) and [Getting Access](getting-access.md).
 
 ## Related
 
 - [Getting Access](getting-access.md)
-- [Geocoding](geocoding.md)
+- [Forward Geocoding](forward-geocoding.md)
+- [Reverse Geocoding](reverse-geocoding.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-10-13
+Last verified: 2025-01-20

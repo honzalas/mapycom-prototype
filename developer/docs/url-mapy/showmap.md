@@ -123,6 +123,7 @@ When opened on a mobile device with the Mapy.com app installed, these URLs will 
 - [Search](search.md)
 - [Route Planning](route.md)
 - [URL Mapy Documentation](README.md)
-- [REST API Geocoding](../rest-api/geocoding.md) - For converting addresses to coordinates programmatically
+- [REST API Forward Geocoding](../rest-api/forward-geocoding.md) - For converting addresses to coordinates programmatically
+- [REST API Reverse Geocoding](../rest-api/reverse-geocoding.md) - For converting coordinates to addresses programmatically
 
 Last verified: 2025-10-13

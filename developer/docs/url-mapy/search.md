@@ -147,7 +147,7 @@ When opened on a mobile device with the Mapy.com app installed, search URLs will
 
 ## Programmatic Alternative
 
-For programmatic access to search and geocoding, use the [REST API Geocoding](../rest-api/geocoding.md) endpoint which provides:
+For programmatic access to search and geocoding, use the [REST API Forward Geocoding](../rest-api/forward-geocoding.md) and [Reverse Geocoding](../rest-api/reverse-geocoding.md) endpoints which provide:
 - JSON response format
 - Structured data
 - Autocomplete/suggestions
@@ -158,6 +158,7 @@ For programmatic access to search and geocoding, use the [REST API Geocoding](..
 - [Show Map](showmap.md)
 - [Route Planning](route.md)
 - [URL Mapy Documentation](README.md)
-- [REST API Geocoding](../rest-api/geocoding.md) - For programmatic search and autocomplete
+- [REST API Forward Geocoding](../rest-api/forward-geocoding.md) - For programmatic search and autocomplete
+- [REST API Reverse Geocoding](../rest-api/reverse-geocoding.md) - For coordinates to address conversion
 
 Last verified: 2025-10-13

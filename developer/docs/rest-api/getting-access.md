@@ -86,7 +86,9 @@ You can try different parameters and see the actual responses before implementin
 
 - [REST API Documentation](README.md)
 - [Map Tiles](map-tiles.md)
-- [Geocoding](geocoding.md)
-- [Route Planning](route-planning.md)
+- [Forward Geocoding](forward-geocoding.md)
+- [Reverse Geocoding](reverse-geocoding.md)
+- [Routing](routing.md)
+- [Matrix Routing](matrix-routing.md)
 
 Last verified: 2025-10-13

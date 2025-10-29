@@ -191,7 +191,7 @@ When the URL is opened on a mobile device with the Mapy.com app installed:
 
 ## Programmatic Alternative
 
-For programmatic route calculation with JSON responses, use the [REST API Route Planning](../rest-api/route-planning.md) endpoint which provides:
+For programmatic route calculation with JSON responses, use the [REST API Routing](../rest-api/routing.md) and [Matrix Routing](../rest-api/matrix-routing.md) endpoints which provide:
 - Route geometry (coordinates)
 - Distance and duration
 - Turn-by-turn instructions
@@ -203,6 +203,7 @@ For programmatic route calculation with JSON responses, use the [REST API Route 
 - [Show Map](showmap.md)
 - [Search](search.md)
 - [URL Mapy Documentation](README.md)
-- [REST API Route Planning](../rest-api/route-planning.md) - For programmatic route calculation
+- [REST API Routing](../rest-api/routing.md) - For programmatic route calculation
+- [REST API Matrix Routing](../rest-api/matrix-routing.md) - For distance/time matrices
 
 Last verified: 2025-10-13

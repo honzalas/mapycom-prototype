@@ -1,6 +1,6 @@
-# Geocoding
+# Forward Geocoding
 
-The Geocoding API provides forward geocoding (address to coordinates), reverse geocoding (coordinates to address), and autocomplete/suggestion functionality for address search.
+The Forward Geocoding API converts textual location queries into geographic coordinates and structured address information. It searches for entities (addresses) based on a text query and returns coordinates and additional data, such as the surrounding regional hierarchy (e.g., city, district, country).
 
 ## Quick Links
 
@@ -8,26 +8,14 @@ The Geocoding API provides forward geocoding (address to coordinates), reverse g
 - Swagger UI: https://api.mapy.com/v1/docs/geocode/
 - OpenAPI: https://api.mapy.com/v1/docs/geocode/openapi.json
 
-## Typical Endpoints
+## Endpoints
 
 - `GET /v1/geocode` - Forward geocoding (address → coordinates)
 - `GET /v1/suggest` - Autocomplete suggestions for address search
-- `GET /v1/rgeocode` - Reverse geocoding (coordinates → address)
 
-## Forward Geocoding
-
-Forward geocoding converts textual location queries into geographic coordinates and structured address information.
-
-**Geocoding** – Searches for entities (addresses) based on a text query. It returns coordinates and additional data, such as the surrounding regional hierarchy (e.g., city, district, country).
-
-**Suggest (Autocomplete)** – Works similarly to geocoding but is optimized for incomplete queries. It is typically used to provide suggestions for locations as the user types a search term.
-
+## Key Parameters (Selection)
 
 ### Geocode Endpoint
-
-Convert complete addresses or place names to geographic coordinates.
-
-#### Key Parameters
 
 - `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
 - `query` (string) — Geographic entity name or coordinates to resolve
@@ -39,11 +27,23 @@ Convert complete addresses or place names to geographic coordinates.
 - `preferNear` (array) — Prefer results near this position (not a filter). Format: `[lon,lat]`
 - `preferNearPrecision` (number) — Precision of preferNear parameter in meters
 
-> Complete parameter list available in Swagger / YAML above.
+### Suggest Endpoint
 
-#### Response Structure
+- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `query` (string) — Geographic entity name or coordinates to resolve (max 150 characters)
+- `limit` (integer) — Maximum number of results (default: 5, upper limit: 15)
+- `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)
+- `type` (array) — Filter by entity types (default: `["regional","poi"]`). Available types: `regional`, `regional.country`, `regional.region`, `regional.municipality`, `regional.municipality_part`, `regional.street`, `regional.address`, `poi`, `coordinate`
+- `locality` (array) — Return results only from these localities (locality names, country codes, or BOX format)
+- `preferBBox` (array) — Prefer results from this bounding box (not a filter). Format: `[minLon,minLat,maxLon,maxLat]`
+- `preferNear` (array) — Prefer results near this position (not a filter). Format: `[lon,lat]`
+- `preferNearPrecision` (number) — Precision of preferNear parameter in meters
 
-The geocode endpoint returns a JSON object with the following structure:
+> Complete parameter list available in Swagger / OpenAPI above.
+
+## Response Structure
+
+Both endpoints return a JSON object with the following structure:
 
 - `items` (array) — List of matching geographical entities, each containing:
   - `name` (string) — Name of the entity (e.g., "Týnská ulička 610/7")
@@ -56,75 +56,40 @@ The geocode endpoint returns a JSON object with the following structure:
   - `zip` (string, optional) — Postal code (available only for some addresses)
 - `locality` (array, optional) — Resolved bounding boxes for localities used in the `locality` parameter
 
-#### Examples
+## Examples
 
-##### cURL
+### cURL
 
 ```bash
 # Find coordinates for an address
 curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=Prague+Castle&limit=5"
-```
 
-##### C# (HttpClient)
-
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-var apiKey = Environment.GetEnvironmentVariable("MAPY_API_KEY");
-var query = Uri.EscapeDataString("Prague Castle");
-var url = $"https://api.mapy.com/v1/geocode?apikey={apiKey}&query={query}&limit=5";
-
-using var client = new HttpClient();
-var json = await client.GetStringAsync(url);
-Console.WriteLine(json);
-```
-
-### Suggest Endpoint
-
-Get search suggestions as users type, useful for implementing autocomplete search boxes with partial queries. Similar to geocode but accounts for incomplete queries (max 150 characters).
-
-#### Key Parameters
-
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
-- `query` (string) — Geographic entity name or coordinates to resolve (max 150 characters)
-- `limit` (integer) — Maximum number of results (default: 5, upper limit: 15)
-- `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)
-- `type` (array) — Filter by entity types (default: `["regional","poi"]`). Available types: `regional`, `regional.country`, `regional.region`, `regional.municipality`, `regional.municipality_part`, `regional.street`, `regional.address`, `poi`, `coordinate`
-- `locality` (array) — Return results only from these localities (locality names, country codes, or BOX format)
-- `preferBBox` (array) — Prefer results from this bounding box (not a filter). Format: `[minLon,minLat,maxLon,maxLat]`
-- `preferNear` (array) — Prefer results near this position (not a filter). Format: `[lon,lat]`
-- `preferNearPrecision` (number) — Precision of preferNear parameter in meters
-
-  #### Response Structure
-
-The suggest endpoint returns the same JSON structure as geocode:
-
-- `items` (array) — List of suggested geographical entities with the same properties as geocode (name, label, position, bbox, type, location, regionalStructure, zip)
-- `locality` (array, optional) — Resolved bounding boxes for localities used in the `locality` parameter
-
-#### Examples
-
-##### cURL
-
-```bash
 # Get autocomplete suggestions
 curl "https://api.mapy.com/v1/suggest?apikey=YOUR_API_KEY&query=Prag&limit=10"
+
+# Search with specific entity types
+curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=Praha&type=regional.municipality&limit=5"
+
+# Search within specific locality
+curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=Hlavní+náměstí&locality=Praha&limit=5"
+
+# Search with bounding box preference
+curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=restaurant&preferBBox=14.4,50.0,14.5,50.1&limit=5"
+
+# Search near specific position
+curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=hotel&preferNear=14.4378,50.0755&preferNearPrecision=1000&limit=5"
 ```
 
-##### Autocomplete with autoComplete.js
+### HTML Example with Autocomplete
 
 This example shows integration with the external autocomplete component [autoComplete.js](https://tarekraafat.github.io/autoComplete.js/):
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.02.min.css">
 </head>
-
 <body>
     <div class="autoComplete_wrapper">
         <input id="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
@@ -143,7 +108,6 @@ This example shows integration with the external autocomplete component [autoCom
           }
           
           try {
-            // you need to use your own api key!
             const fetchData = await fetch(`https://api.mapy.cz/v1/suggest?lang=cs&limit=5&type=regional.address&apikey=${API_KEY}&query=${query}`);
             const jsonData = await fetchData.json();
             // map values to { value, data }
@@ -190,9 +154,7 @@ This example shows integration with the external autocomplete component [autoCom
               
               desc.style = "overflow: hidden; white-space: nowrap; text-overflow: ellipsis;";
               desc.innerHTML = `${itemData.label}, ${itemData.location}`;
-              item.append(
-                desc,
-              );
+              item.append(desc);
             },
             highlight: true
           },
@@ -234,47 +196,16 @@ This example shows integration with the external autocomplete component [autoCom
         });
     </script>
 </body>
-
 </html>
 ```
 
-## Reverse Geocoding
+## Use Cases
 
-**Reverzní geokódování** – vrací regionální entity na základě souřadnice (při kliknutí do mapy vrací adresy v daném bodě)
-
-Convert geographic coordinates to addresses. Useful for "click on map" features where users select a location and you need to display the corresponding address.
-
-### Key Parameters
-
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
-- `lon` (number, required) — Longitude in degrees (-180 to 180, decimal point is ".")
-- `lat` (number, required) — Latitude in degrees (-90 to 90, decimal point is ".")
-- `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)
-
-> Note: Reverse geocoding returns only regional entity types (country, region, municipality, municipality_part, street, address), not POIs.
-
-### Response Structure
-
-The reverse geocode endpoint returns a JSON object with:
-
-- `items` (array) — List of regional entities at the given location, each containing:
-  - `name` (string) — Name of the entity (e.g., "Týnská ulička 610/7")
-  - `label` (string) — Type label (e.g., "Adresa", "Ulice")
-  - `position` (object) — Coordinates with `lon` and `lat` properties
-  - `bbox` (array) — Bounding box as `[minLon, minLat, maxLon, maxLat]`
-  - `type` (string) — Regional entity type (e.g., "regional.address", "regional.street", "regional.municipality")
-  - `location` (string) — Short locality label (e.g., "Praha 1 - Staré Město, Česko")
-  - `regionalStructure` (array) — Ordered list of parent administrative entities (smallest first), each with `name`, `type`, and optionally `isoCode` for countries
-  - `zip` (string, optional) — Postal code (available only for some addresses)
-
-### Examples
-
-#### cURL
-
-```bash
-# Find address for coordinates
-curl "https://api.mapy.com/v1/rgeocode?apikey=YOUR_API_KEY&lon=14.4378&lat=50.0755"
-```
+- **Address Search**: Convert street addresses to coordinates
+- **Place Search**: Find coordinates for cities, landmarks, and POIs
+- **Autocomplete**: Provide search suggestions as users type
+- **Location Services**: Enable location-based features in applications
+- **Mapping Applications**: Display search results on maps
 
 ## Common Errors and Limits
 
@@ -282,17 +213,19 @@ curl "https://api.mapy.com/v1/rgeocode?apikey=YOUR_API_KEY&lon=14.4378&lat=50.07
 - **500 Internal Server Error**: Server-side error
 
 **Rate Limits:**
-- Reverse Geocoding (rgeocode): Maximum 200 requests per second per API key
 - Forward Geocoding (geocode): Maximum 100 requests per second per API key
 - Suggest: Maximum 100 requests per second per API key
 
-For detailed error responses and rate limits, see the [OpenAPI specification](https://api.mapy.com/v1/docs/geocode/openapi.yaml).
+For detailed error responses and rate limits, see the [OpenAPI specification](https://api.mapy.com/v1/docs/geocode/openapi.json) and [Getting Access](getting-access.md).
 
 ## Related
 
 - [Getting Access](getting-access.md)
-- [Route Planning](route-planning.md)
+- [Reverse Geocoding](reverse-geocoding.md)
+- [Routing](routing.md)
+- [Matrix Routing](matrix-routing.md)
 - [URL Search](../url-mapy/search.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-10-13
+Last verified: 2025-01-20
+
