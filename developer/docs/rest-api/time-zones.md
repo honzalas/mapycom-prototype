@@ -147,4 +147,3 @@ For detailed error responses and rate limits, see the [OpenAPI specification](ht
 - [Reverse Geocoding](reverse-geocoding.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-01-20

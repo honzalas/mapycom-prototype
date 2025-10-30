@@ -304,5 +304,4 @@ Panoramas are primarily available for locations in the Czech Republic and select
 - [Static Panorama API](../rest-api/static-panorama.md)
 - [REST API Documentation](../rest-api/README.md)
 
-Last verified: 2025-01-20
 

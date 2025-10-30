@@ -132,4 +132,3 @@ For detailed error responses and rate limits, see the [OpenAPI specification](ht
 - [Static Maps](static-maps.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-01-20

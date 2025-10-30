@@ -122,4 +122,3 @@ Specify `lon` and `lat` twice to define a bounding box:
 - [Static Panorama](static-panorama.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-01-20

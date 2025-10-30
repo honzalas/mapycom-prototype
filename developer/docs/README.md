@@ -47,4 +47,3 @@ All technical specifications, parameter details, and schemas are available throu
 
 This repository provides practical examples and quick references, while linking to the official sources for complete technical documentation.
 
-Last verified: 2025-10-13
