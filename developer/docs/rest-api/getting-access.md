@@ -4,7 +4,7 @@ Getting started with the Mapy.com REST API is simple and free. You can begin usi
 
 ## Quick Start - Get Your Free API Key
 
-1. **Log in with Seznam account**: Visit [My Account portal](https://developer.mapy.com/) and use your Seznam account email
+1. **Log in with Seznam account**: Visit [My Account portal](https://developer.mapy.com/account/) and use your Seznam account email
 2. **Create an API Project**: Create a new project for your application
 3. **Get your API key**: The first API key is automatically created within the project
 4. **Start using the API**: You can begin making API calls immediately
@@ -15,7 +15,7 @@ For detailed step-by-step instructions, see the [official getting started guide]
 
 ## API Key Management
 
-You can create and manage API keys in the [My Account portal](https://developer.mapy.com/rest-api-mapy-cz/api-key/):
+You can create and manage API keys in the [My Account portal](https://developer.mapy.com/account/):
 
 - Create separate keys for development and production environments
 - Generate different keys for web and mobile versions of your app
@@ -58,14 +58,18 @@ For detailed pricing information, visit the [official pricing page](https://deve
 
 - **Never commit API keys to version control**: Use environment variables or secure configuration
 - **Use server-side proxies for sensitive calls**: Don't expose your API key in client-side code for production applications
-- **Monitor your usage**: Track credit consumption in the My Account portal
+- **Monitor your usage**: Track credit consumption in the [My Account portal](https://developer.mapy.com/account/)
 - **Rotate keys if compromised**: Generate new keys immediately if you suspect unauthorized access
 
 ## Related
 
 - [REST API Documentation](README.md)
 - [Map Tiles](map-tiles.md)
+- [Static Maps](static-maps.md)
 - [Forward Geocoding](forward-geocoding.md)
 - [Reverse Geocoding](reverse-geocoding.md)
 - [Routing](routing.md)
 - [Matrix Routing](matrix-routing.md)
+- [Elevation](elevation.md)
+- [Static Panorama](static-panorama.md)
+- [Time Zones](time-zones.md)
