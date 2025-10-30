@@ -46,7 +46,7 @@ https://mapy.com/fnc/v1/route?start=14.4378,50.0755&end=16.6068,49.1951&routeTyp
 ## Official Documentation
 
 **Complete user documentation for all URL schemes is available at:**
-https://developer.mapy.com/further-uses-of-mapycz/
+https://developer.mapy.com/further-uses-of-mapycz/mapy-cz-url/
 
 This official documentation includes:
 - Detailed parameter descriptions

@@ -3,7 +3,7 @@
 The `/showmap` URL function displays a map at specified coordinates with an optional marker. Use this to link directly to locations on Mapy.com from your website or application.
 
 **Complete user documentation for Mapy.com URLs is available at:**  
-https://developer.mapy.com/further-uses-of-mapycz/
+https://developer.mapy.com/further-uses-of-mapycz/mapy-cz-url/
 
 ## URL Format
 

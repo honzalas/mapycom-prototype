@@ -3,7 +3,7 @@
 The `/route` URL function displays a planned route between specified points on Mapy.com. Use this to provide direct "Get Directions" links from your website or application.
 
 **Complete user documentation for Mapy.com URLs is available at:**  
-https://developer.mapy.com/further-uses-of-mapycz/
+https://developer.mapy.com/further-uses-of-mapycz/mapy-cz-url/
 
 ## URL Format
 

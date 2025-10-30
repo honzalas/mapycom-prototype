@@ -3,7 +3,7 @@
 The `/search` URL function displays search results for a specified query on Mapy.com. Use this to link directly to search results for locations, businesses, or points of interest.
 
 **Complete user documentation for Mapy.com URLs is available at:**  
-https://developer.mapy.com/further-uses-of-mapycz/
+https://developer.mapy.com/further-uses-of-mapycz/mapy-cz-url/
 
 ## URL Format
 

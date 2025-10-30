@@ -19,6 +19,9 @@ This repository provides:
 
 ## Official Resources
 
+### REST API
+For the official REST API documentation, visit: https://developer.mapy.com/rest-api-mapy-cz/
+
 The complete OpenAPI specifications and interactive documentation are hosted on `api.mapy.com`:
 - [Map Tiles API](https://api.mapy.com/v1/docs/maptiles/)
 - [Static Maps API](https://api.mapy.com/v1/docs/static/)
@@ -27,7 +30,11 @@ The complete OpenAPI specifications and interactive documentation are hosted on 
 - [Elevation API](https://api.mapy.com/v1/docs/elevation/)
 - [Timezone API](https://api.mapy.com/v1/docs/timezone/)
 
-For the official developer portal, visit: https://developer.mapy.com/
+### URL Mapy.com
+For URL schemes documentation, visit: https://developer.mapy.com/further-uses-of-mapycz/mapy-cz-url/
+
+### JS Panorama
+For JavaScript Panorama component documentation, visit: https://developer.mapy.com/js-panorama-2/
 
 ## Note on OpenAPI Files
 
