@@ -16,7 +16,7 @@ The Static Maps API generates static map images without requiring interactive ma
 
 ### Basic Parameters
 
-- `apikey` (string) — Your API key for authentication
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md))
 - `mapset` (string) — Map style: `basic`, `outdoor`, `winter`, `aerial`, `aerial-names-overlay`
 - `width` (integer) — Image width in pixels (maximum: 1024)
 - `height` (integer) — Image height in pixels (maximum: 1024)

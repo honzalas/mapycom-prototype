@@ -14,7 +14,7 @@ The Routing API provides route calculation between two points, optionally via up
 
 ## Key Parameters (Selection)
 
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (query parameter or X-Mapy-Api-Key header)
 - `start` (array, required) — Coordinates of the beginning of the route `[longitude, latitude]`. Supports exploded `?start=14.40094&start=50.0711` and unexploded `?start=14.40094,50.0711` format
 - `end` (array, required) — Coordinates of the end of the route `[longitude, latitude]`. Supports exploded `?end=14.40094&end=50.0711` and unexploded `?end=14.40094,50.0711` format
 - `routeType` (string, required) — Route type:

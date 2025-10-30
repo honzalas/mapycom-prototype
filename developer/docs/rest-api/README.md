@@ -48,4 +48,3 @@ Before using any REST API function, you need to obtain an API key. See [Getting 
 - [Static Panorama](static-panorama.md)
 - [Time Zones](time-zones.md)
 
-Last verified: 2025-10-13

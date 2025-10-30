@@ -18,18 +18,18 @@ The Time Zones API provides time zone information, local time, and UTC offsets f
 
 ### List Timezones
 
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (alternative: X-Mapy-Api-Key header)
 - `lang` (string, optional) — Language code (default: cs). Supported values: cs, de, el, en, es, fr, it, nl, pl, pt, ru, sk, tr, uk
 
 ### Get Timezone by IANA Code
 
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (alternative: X-Mapy-Api-Key header)
 - `timezone` (string, required) — IANA timezone name (e.g., "Europe/Prague")
 - `lang` (string, optional) — Language code (default: cs)
 
 ### Get Timezone by Coordinates
 
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (alternative: X-Mapy-Api-Key header)
 - `lon` (number, required) — Longitude coordinate
 - `lat` (number, required) — Latitude coordinate
 - `lang` (string, optional) — Language code (default: cs)

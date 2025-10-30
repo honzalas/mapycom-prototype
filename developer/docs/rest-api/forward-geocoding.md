@@ -17,7 +17,7 @@ The Forward Geocoding API converts textual location queries into geographic coor
 
 ### Geocode Endpoint
 
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (query parameter or X-Mapy-Api-Key header)
 - `query` (string) — Geographic entity name or coordinates to resolve
 - `limit` (integer) — Maximum number of results (default: 5, upper limit: 15)
 - `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)
@@ -29,7 +29,7 @@ The Forward Geocoding API converts textual location queries into geographic coor
 
 ### Suggest Endpoint
 
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (query parameter or X-Mapy-Api-Key header)
 - `query` (string) — Geographic entity name or coordinates to resolve (max 150 characters)
 - `limit` (integer) — Maximum number of results (default: 5, upper limit: 15)
 - `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)

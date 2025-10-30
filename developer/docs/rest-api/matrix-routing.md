@@ -14,7 +14,7 @@ The Matrix Routing API calculates distances and travel times for a matrix of sta
 
 ## Key Parameters (Selection)
 
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (query parameter or X-Mapy-Api-Key header)
 - `starts` (array, required) — Coordinates of the beginning of routes. An array of coordinate strings. Supports semicolon-separated `?starts=14.40094,50.0711;14.40194,50.0721` or exploded array `?starts=14.40094,50.0711&starts=14.40194,50.0721` format. Maximum number of starts is 100
 - `ends` (array, optional) — Coordinates of the end of routes. An array of coordinate strings. Supports semicolon-separated `?ends=14.40194,50.0721;14.3961303,50.0714094` or exploded array `?ends=14.40194,50.0721&ends=14.3961303,50.0714094` format. The ends parameter is optional when calculating full NxN matrix (all starts to all starts). Maximum number of ends is 100
 - `routeType` (string, required) — Route type:

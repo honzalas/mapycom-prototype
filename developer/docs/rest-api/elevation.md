@@ -14,7 +14,7 @@ The Elevation API returns elevation data for given coordinates. It can return el
 
 ## Key Parameters (Selection)
 
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (alternative: X-Mapy-Api-Key header)
 - `positions` (array, required) — Up to 256 position coordinates within a 1×1 degree bounding box. Each position is represented by a pair of float numbers, denoting longitude and latitude respectively, separated by a comma.
   
   Multiple positions can be provided in two ways:

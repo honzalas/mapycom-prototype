@@ -24,7 +24,7 @@ Get individual raster map tiles for use in mapping applications.
 
 ### Query Parameters
 
-- `apikey` (string) — Your API key for authentication (alternative: X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (alternative: X-Mapy-Api-Key header)
 - `lang` (string) — Preferred language for labels: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`). Affects only tiles with z ≤ 6
 
 > Complete parameter list available in Swagger / YAML above.
@@ -220,4 +220,3 @@ For detailed error responses and rate limits, see the [OpenAPI specification](ht
 - [Static Maps](static-maps.md)
 - [REST API Documentation](README.md)
 
-Last verified: 2025-10-13

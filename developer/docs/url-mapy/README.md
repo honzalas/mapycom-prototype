@@ -91,4 +91,3 @@ Unlike the REST API, these URL schemes:
 
 For programmatic access to mapping data, use the [REST API](../rest-api/README.md) instead.
 
-Last verified: 2025-10-13

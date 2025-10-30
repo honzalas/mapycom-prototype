@@ -40,4 +40,3 @@ For JavaScript Panorama component documentation, visit: https://developer.mapy.c
 
 This repository does not duplicate OpenAPI specification files. All technical specifications are maintained on `api.mapy.com` and linked from the documentation pages.
 
-Last verified: 2025-10-13

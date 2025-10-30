@@ -16,7 +16,7 @@ The Static Panorama API retrieves static images from spherical photos (360° pan
 
 ### Basic Parameters
 
-- `apikey` (string) — Your API key for authentication
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md))
 - `lon` (number) — Longitude coordinate around which the nearest panorama is searched, within the specified radius
 - `lat` (number) — Latitude coordinate around which the nearest panorama is searched, within the specified radius
 - `width` (integer) — Image width in pixels (maximum: 1024, required)

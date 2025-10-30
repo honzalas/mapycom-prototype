@@ -14,7 +14,7 @@ The Reverse Geocoding API converts geographic coordinates to addresses and regio
 
 ## Key Parameters (Selection)
 
-- `apikey` (string) — Your API key for authentication (query parameter or X-Mapy-Api-Key header)
+- `apikey` (string) — Your API key for authentication ([How to get API key](getting-access.md)) (query parameter or X-Mapy-Api-Key header)
 - `lon` (number, required) — Longitude in degrees (-180 to 180, decimal point is ".")
 - `lat` (number, required) — Latitude in degrees (-90 to 90, decimal point is ".")
 - `lang` (string) — Preferred language for result entity names: `cs`, `de`, `el`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sk`, `tr`, `uk` (default: `cs`)

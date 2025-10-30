@@ -206,4 +206,3 @@ For programmatic route calculation with JSON responses, use the [REST API Routin
 - [REST API Routing](../rest-api/routing.md) - For programmatic route calculation
 - [REST API Matrix Routing](../rest-api/matrix-routing.md) - For distance/time matrices
 
-Last verified: 2025-10-13

@@ -1,21 +1,58 @@
 # Getting Access to Mapy.com REST API
 
-To use the Mapy.com REST API, you need to register for an account and obtain an API key.
+Getting started with the Mapy.com REST API is simple and free. You can begin using the API immediately after creating an account.
 
-## Registration and API Key
+## Quick Start - Get Your Free API Key
 
-1. **Create an Account**: Visit the [Mapy.com Developer Portal](https://developer.mapy.com/) and log in with your Seznam account
-2. **Create an API Project**: In the My Account portal, create a new API Project for your application
-3. **Get Your API Key**: An API key will be automatically generated within your project
-4. **Use the API Key**: Include the API key in your requests using the `apikey` parameter
+1. **Log in with Seznam account**: Visit [My Account portal](https://developer.mapy.com/) and use your Seznam account email
+2. **Create an API Project**: Create a new project for your application
+3. **Get your API key**: The first API key is automatically created within the project
+4. **Start using the API**: You can begin making API calls immediately
+
+**Important**: Use a real email address that you monitor regularly, as important notifications about your API usage are sent to this email.
+
+For detailed step-by-step instructions, see the [official getting started guide](https://developer.mapy.com/rest-api-mapy-cz/how-to-start/).
+
+## API Key Management
+
+You can create and manage API keys in the [My Account portal](https://developer.mapy.com/rest-api-mapy-cz/api-key/):
+
+- Create separate keys for development and production environments
+- Generate different keys for web and mobile versions of your app
+- Monitor usage and credit consumption
+- Secure your production API keys properly
 
 ## Authentication
 
-The API uses simple API key authentication. Include your key in every request:
+Include your API key in every request using the `apikey` parameter:
 
 ```
 https://api.mapy.com/v1/[endpoint]?apikey=YOUR_API_KEY&[other_parameters]
 ```
+
+## First API Call
+
+Test your API key with a simple geocoding request:
+
+```bash
+curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=Prague"
+```
+
+## Pricing Overview
+
+The Mapy.com REST API uses a credit-based system:
+
+- **Free credits included**: Both Basic and Extended tariffs include free credits
+- **No charged consumption without consent**: You only pay for what you actually use
+- **Extended tariff available**: Up to 10 million free credits monthly for publicly accessible projects
+
+For detailed pricing information, visit the [official pricing page](https://developer.mapy.com/pricing/).
+
+## Testing and Development
+
+- **Interactive testing**: Use the [Swagger UI](https://api.mapy.com/v1/docs/) to test API calls
+- **Tutorials**: Find practical examples in the [REST API tutorials](https://developer.mapy.com/rest-api-mapy-cz/)
+- **Testing labs**: Try individual function calls and see responses
 
 ## Security Best Practices
 
@@ -23,64 +60,6 @@ https://api.mapy.com/v1/[endpoint]?apikey=YOUR_API_KEY&[other_parameters]
 - **Use server-side proxies for sensitive calls**: Don't expose your API key in client-side code for production applications
 - **Monitor your usage**: Track credit consumption in the My Account portal
 - **Rotate keys if compromised**: Generate new keys immediately if you suspect unauthorized access
-
-## Hello API - First Request
-
-Here's a simple example calling the geocoding API to find coordinates for an address:
-
-### cURL
-
-```bash
-curl "https://api.mapy.com/v1/geocode?apikey=YOUR_API_KEY&query=Prague"
-```
-
-### JavaScript (fetch)
-
-```js
-const apiKey = process.env.MAPY_API_KEY;
-const query = 'Prague';
-
-fetch(`https://api.mapy.com/v1/geocode?apikey=${apiKey}&query=${encodeURIComponent(query)}`)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-```
-
-### C# (HttpClient)
-
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-var apiKey = Environment.GetEnvironmentVariable("MAPY_API_KEY");
-var query = "Prague";
-var url = $"https://api.mapy.com/v1/geocode?apikey={apiKey}&query={Uri.EscapeDataString(query)}";
-
-using var client = new HttpClient();
-var response = await client.GetStringAsync(url);
-Console.WriteLine(response);
-```
-
-## Rate Limits and Pricing
-
-The Mapy.com REST API uses a credit-based system:
-
-- **Free tier**: Available for testing and small-scale projects
-- **Paid plans**: Available for production applications with higher usage
-- **Credit consumption**: Different endpoints consume different amounts of credits
-- **Monitoring**: Track your usage in the My Account portal
-
-For current pricing and detailed information about rate limits, visit:
-- [Mapy.com REST API Pricing](https://developer.mapy.com/en/rest-api-mapy-cz/)
-- [My Account Portal](https://developer.mapy.com/)
-
-## Testing
-
-Use the interactive Swagger UI to test API calls and explore responses:
-- [API Documentation](https://api.mapy.com/v1/docs/)
-
-You can try different parameters and see the actual responses before implementing in your application.
 
 ## Related
 
@@ -90,5 +69,3 @@ You can try different parameters and see the actual responses before implementin
 - [Reverse Geocoding](reverse-geocoding.md)
 - [Routing](routing.md)
 - [Matrix Routing](matrix-routing.md)
-
-Last verified: 2025-10-13

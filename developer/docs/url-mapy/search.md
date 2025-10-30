@@ -161,4 +161,3 @@ For programmatic access to search and geocoding, use the [REST API Forward Geoco
 - [REST API Forward Geocoding](../rest-api/forward-geocoding.md) - For programmatic search and autocomplete
 - [REST API Reverse Geocoding](../rest-api/reverse-geocoding.md) - For coordinates to address conversion
 
-Last verified: 2025-10-13
